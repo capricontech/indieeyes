@@ -1,24 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IndieEyes Frontend
+
+This is the frontend for the IndieEyes application. It's built with Next.js and designed to be API-ready with a class-based architecture.
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. Run the development server:
+   ```
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## API Integration
+
+The frontend is designed with a class-based API service architecture that will connect to a backend when it's available.
+
+### Mock Data vs. Real API
+
+The application can switch between mock data and real API calls using environment variables:
+
+- Set `NEXT_PUBLIC_USE_MOCK_DATA=true` to use mock data (default)
+- Set `NEXT_PUBLIC_USE_MOCK_DATA=false` to use real API calls
+- Set `NEXT_PUBLIC_API_URL` to change the API base URL (default: http://localhost:3001/api)
+
+Example `.env.local` file:
+```
+NEXT_PUBLIC_USE_MOCK_DATA=false
+NEXT_PUBLIC_API_URL=http://localhost:3001/api
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### API Service Architecture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The API services follow a class-based architecture:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/services/api/BaseService.ts`: Base class providing common functionality
+  - `ShapeService`: Service for shape-related API calls
+  - `CategoryService`: Service for category-related API calls
+  - `ProductService`: Service for product-related API calls
+
+Each service class:
+- Extends the BaseService class
+- Follows the singleton pattern
+- Provides methods for specific API endpoints
+- Handles switching between mock data and real API calls
+
+### Data Models
+
+Data models are defined as TypeScript interfaces in `app/types/index.ts`
+
+## Components
+
+Components fetch data using the API service classes:
+
+- `BrowserByShoap.tsx`: Displays eyewear shapes, fetched from the ShapeService
+- `Categories.tsx`: Displays product categories, fetched from the CategoryService
+- (Other components follow the same pattern)
+
+## Backend Integration
+
+When the backend is ready, follow these steps:
+
+1. Implement the backend API according to the specifications in `backend/api-spec.md`
+2. Set `NEXT_PUBLIC_USE_MOCK_DATA=false` in your environment
+3. The frontend will automatically start using the real API endpoints
 
 ## Learn More
 

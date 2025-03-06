@@ -1,30 +1,62 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { Category } from '../types';
+import categoryService from '../services/api/categories';
 
 export default function Categories() {
-    const categories = [
-        {
-            id: 1,
-            image: "/assets/images/categories/men.png",
-            style: { width: '289px', height: '254px' }
-        },
-        {
-            id: 2,
-            image: "/assets/images/categories/women.png",
-            style: { width: '289px', height: '164px'}
-        },
-        {
-            id: 3,
-            image: "/assets/images/categories/unisex.png",
-            style: { width: '289px', height: '164px' }
-        },
-        {
-            id: 4,
-            image: "/assets/images/categories/kids.png",
-            style: { width: '289px', height: '230px' }
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function loadCategories() {
+            try {
+                setLoading(true);
+                const categoriesData = await categoryService.getCategories();
+                setCategories(categoriesData);
+                setError(null);
+            } catch (err) {
+                console.error('Error loading categories:', err);
+                setError('Failed to load categories. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
         }
-    ];
+
+        loadCategories();
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="w-full bg-white py-24 px-20">
+                <div className="flex justify-center items-center min-h-[400px]">
+                    <p className="text-xl">Loading categories...</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className="w-full bg-white py-24 px-20">
+                <div className="flex justify-center items-center min-h-[400px]">
+                    <p className="text-xl text-red-500">{error}</p>
+                </div>
+            </section>
+        );
+    }
+
+    // Ensure we have all required categories before rendering
+    if (categories.length < 4) {
+        return (
+            <section className="w-full bg-white py-24 px-20">
+                <div className="flex justify-center items-center min-h-[400px]">
+                    <p className="text-xl">No categories available</p>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className="w-full bg-white py-24 px-20">
@@ -47,51 +79,51 @@ export default function Categories() {
                     </div>
 
                     {/* Right grid */}
-                        <div className="grid grid-cols-2 gap-x-2 gap-y-2">
-                            <div className="space-y-4 md:space-y-4 flex flex-col items-center">
-                                
-                                <div className="flex justify-center w-full">
-                                    <Image 
-                                        src={categories[0].image} 
-                                        alt="Men's Category" 
-                                        width={289}
-                                        height={254}
-                                        className="rounded-lg bg-[#DBE4ED] hover:scale-105 transition-transform duration-300" 
-                                    />
-                                </div>
-                                <div className="flex justify-center w-full">
-                                    <Image 
-                                        src={categories[2].image}
-                                        alt="Unisex Category" 
-                                        width={289}
-                                        height={164}
-                                        className="rounded-lg hover:scale-105 bg-[#DBE4ED] transition-transform duration-300" 
-                                    />
-                                </div>
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-2">
+                        <div className="space-y-4 md:space-y-4 flex flex-col items-center">
+
+                            <div className="flex justify-center w-full">
+                                <Image
+                                    src={categories[0].image}
+                                    alt={`${categories[0].name} Category`}
+                                    width={289}
+                                    height={254}
+                                    className="rounded-lg bg-[#DBE4ED] hover:scale-105 transition-transform duration-300"
+                                />
                             </div>
-                            <div className="space-y-4 md:space-y-4 flex flex-col items-center pt-9">
-                                
-                                <div className="flex justify-center w-full">
-                                    <Image 
-                                        src={categories[1].image} 
-                                        alt="Men's Category" 
-                                        width={289}
-                                        height={254}
-                                        className="rounded-lg bg-[#DBE4ED] hover:scale-105 transition-transform duration-300" 
-                                    />
-                                </div>
-                                <div className="flex justify-center w-full">
-                                    <Image 
-                                        src={categories[3].image}
-                                        alt="Unisex Category" 
-                                        width={289}
-                                        height={164}
-                                        className="rounded-lg hover:scale-105 bg-[#DBE4ED] transition-transform duration-300" 
-                                    />
-                                </div>
+                            <div className="flex justify-center w-full">
+                                <Image
+                                    src={categories[2].image}
+                                    alt={`${categories[2].name} Category`}
+                                    width={289}
+                                    height={164}
+                                    className="rounded-lg hover:scale-105 bg-[#DBE4ED] transition-transform duration-300"
+                                />
+                            </div>
+                        </div>
+                        <div className="space-y-4 md:space-y-4 flex flex-col items-center pt-9">
+
+                            <div className="flex justify-center w-full">
+                                <Image
+                                    src={categories[1].image}
+                                    alt={`${categories[1].name} Category`}
+                                    width={289}
+                                    height={254}
+                                    className="rounded-lg bg-[#DBE4ED] hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div className="flex justify-center w-full">
+                                <Image
+                                    src={categories[3].image}
+                                    alt={`${categories[3].name} Category`}
+                                    width={289}
+                                    height={164}
+                                    className="rounded-lg hover:scale-105 bg-[#DBE4ED] transition-transform duration-300"
+                                />
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </section>
     );
