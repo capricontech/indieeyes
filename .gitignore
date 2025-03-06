@@ -119,4 +119,32 @@ dist
 
 # frontend node_modules
 frontend/node_modules/
-node_modules/ 
+node_modules/
+
+# Webpack specific files
+**/webpack-runtime.js
+**/webpack.js
+**/*.webpack.hot-update.json
+**/*.hot-update.js
+**/*.hot-update.json
+
+# More Next.js specific build artifacts
+**/next-font-manifest.js
+**/interception-route-rewrite-manifest.js
+**/server-reference-manifest.js
+**/server-reference-manifest.json
+**/middleware-react-loadable-manifest.js
+**/middleware-build-manifest.js
+**/_buildManifest.js
+**/_ssgManifest.js
+**/react-loadable-manifest.json
+**/build-manifest.json
+**/pages-manifest.json
+**/app-paths-manifest.json
+**/middleware-manifest.json
+**/client-reference-manifest.json
+**/app/*_client-reference-manifest.js
+
+# Cache directories
+**/.cache/
+**/frontend/.next/cache/ 

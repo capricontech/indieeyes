@@ -1,7 +1,7 @@
 import Category from './components/Category';
 import Slider from './components/Slider';
 import Categories from './components/Categories';
-import BrowserByShoap from './components/BrowserByShoap';
+import BrowseByShape from './components/BrowseByShape';
 import RecentlyAdded from './components/Recently';
 import Lenses from './components/Lenses';
 import Testimonial from './components/Testimonial';
@@ -14,7 +14,7 @@ export default function Home() {
       <Category />
       <Slider />
       <Categories />
-      <BrowserByShoap />
+      <BrowseByShape />
       <RecentlyAdded />
       <Lenses />
       <Testimonial />
