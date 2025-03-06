@@ -148,3 +148,5 @@ node_modules/
 # Cache directories
 **/.cache/
 **/frontend/.next/cache/ 
+
+.next/
