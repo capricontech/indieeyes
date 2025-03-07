@@ -19,11 +19,29 @@ const categories = [
 
 export default function Category(){
     return (
-        <div className="bg-white py-16">
+        <div className="bg-white md:py-16 py-24">
             <Swiper
                 modules={[Navigation, Autoplay]}
                 spaceBetween={30}
                 slidesPerView={5}
+                breakpoints={{
+                    320: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    640: {
+                        slidesPerView: 3,
+                        spaceBetween: 25
+                    },
+                    768: {
+                        slidesPerView: 4,
+                        spaceBetween: 30
+                    },
+                    1024: {
+                        slidesPerView: 5,
+                        spaceBetween: 30
+                    }
+                }}
                 autoplay={{ delay: 700, disableOnInteraction: false }}
                 loop={true}
                 className="w-full"

@@ -36,9 +36,9 @@ export default function Footer() {
     return (
         <footer className="bg-[#F1F1FB] py-16 w-full">
             <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {/* Logo and Description */}
-                    <div className="space-y-4 max-w-full">
+                    <div className="space-y-4 max-w-full lg:col-span-1">
                         <Link href="/" className="inline-block">
                             <Image
                                 src="/assets/icons/logo1.png"
@@ -66,62 +66,65 @@ export default function Footer() {
                             ))}
                         </div>
                     </div>
-                            
-                    {/* About Us */}
-                    <div className="ml-28">
-                        <h3 className="text-[#332A9B] font-semibold text-xl mb-4">About Us</h3>
-                        <ul className="space-y-2">
-                            {aboutUs.map((item) => (
-                                <li key={item.name}>
-                                    <Link href={item.href} className="text-[#707070] hover:text-[#6053FB] transition-colors">
-                                        {item.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    
+                    {/* Links Section */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:col-span-3">
+                        {/* About Us */}
+                        <div className="md:ml-8 lg:ml-28">
+                            <h3 className="text-[#332A9B] font-semibold text-xl mb-4">About Us</h3>
+                            <ul className="space-y-2">
+                                {aboutUs.map((item) => (
+                                    <li key={item.name}>
+                                        <Link href={item.href} className="text-[#707070] hover:text-[#6053FB] transition-colors">
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    {/* Account */}
-                    <div className='ml-28'>
-                        <h3 className="text-[#332A9B] font-semibold text-xl mb-4 ">Account</h3>
-                        <ul className="space-y-2">
-                            {account.map((item) => (
-                                <li key={item.name}>
-                                    <Link href={item.href} className="text-[#707070] hover:text-[#6053FB] transition-colors">
-                                        {item.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        {/* Account */}
+                        <div className="md:ml-8 lg:ml-28">
+                            <h3 className="text-[#332A9B] font-semibold text-xl mb-4">Account</h3>
+                            <ul className="space-y-2">
+                                {account.map((item) => (
+                                    <li key={item.name}>
+                                        <Link href={item.href} className="text-[#707070] hover:text-[#6053FB] transition-colors">
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    {/* Useful Links */}
-                    <div className='ml-16'>
-                        <h3 className="text-[#332A9B] font-semibold text-xl mb-4">Useful Links</h3>
-                        <ul className="space-y-2">
-                            {usefulLinks.map((item) => (
-                                <li key={item.name}>
-                                    <Link href={item.href} className="text-[#707070] hover:text-[#6053FB] transition-colors">
-                                        {item.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="grid grid-cols-2 gap-4  mt-6">
-                            <Image
-                                src="/assets/icons/playstore.png"
-                                alt="Get it on Google Play"
-                                width={50}
-                                height={40}
-                                className="h-10 w-auto"
-                            />
-                            <Image
-                                src="/assets/icons/appstore.png"
-                                alt="Download on App Store"
-                                width={135}
-                                height={40}
-                                className="h-10 w-auto"
-                            />
+                        {/* Useful Links */}
+                        <div className="md:ml-8 lg:ml-16">
+                            <h3 className="text-[#332A9B] font-semibold text-xl mb-4">Useful Links</h3>
+                            <ul className="space-y-2">
+                                {usefulLinks.map((item) => (
+                                    <li key={item.name}>
+                                        <Link href={item.href} className="text-[#707070] hover:text-[#6053FB] transition-colors">
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="grid grid-cols-2 gap-4 mt-6">
+                                <Image
+                                    src="/assets/icons/playstore.png"
+                                    alt="Get it on Google Play"
+                                    width={50}
+                                    height={40}
+                                    className="h-10 w-auto"
+                                />
+                                <Image
+                                    src="/assets/icons/appstore.png"
+                                    alt="Download on App Store"
+                                    width={135}
+                                    height={40}
+                                    className="h-10 w-auto"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@ const categories: Category[] = [
 export default function Slider() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <div className="relative w-full mx-auto overflow-visible">
+        <div className="relative md:w-full  mx-auto overflow-visible">
             <Swiper
                 modules={[Autoplay]}
                 grabCursor={true}
@@ -44,7 +44,7 @@ export default function Slider() {
                         }}
                     >
                         <div
-                            className={`rounded-[10px] bg-cover bg-center transition-all duration-500`}
+                            className={`rounded-[10px] bg-cover bg-center transition-all duration-500 md:w-full md:h-full w-72`}
                             style={{
                                 backgroundImage: `url(${item.image})`,
                                 width: '100%',
@@ -52,12 +52,12 @@ export default function Slider() {
                                 opacity: index === activeIndex ? '1' : '0.6',
                             }}
                         >
-                            <img src={item.image} alt={`Category image ${index + 1}`} className="hidden" /> {/* For accessibility */}
+                            <img src={item.image} alt={`Category image ${index + 1}`} className="hidden" /> 
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="absolute left-1/2  flex gap-2">
+            <div className="  justify-center flex gap-2 ">
                 {categories.map((_, i) => (
                     <div
                         key={i}

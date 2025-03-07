@@ -133,15 +133,12 @@ export default function Testimonial() {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index} className="transition-all duration-300">
-              {({ isActive, isNext, isPrev, isVisible }) => (
+              {({ isActive, isPrev, isNext }) => (
                 <div className={`
-                  bg-white shadow-lg rounded-xl p-6 text-center transition-all duration-300
-                  ${isActive ? 'opacity-100 scale-100 blur-0' : ''}
-                  ${(isNext || isPrev) ? 'opacity-100 scale-100 blur-0' : ''}
-                  ${isVisible && !isActive && !isNext && !isPrev ? 'opacity-100 scale-95 blur-[2px]' : ''}
-                  ${!isVisible ? 'opacity-50 scale-90 blur-[1px]' : ''}
-                  h-[400px] flex flex-col
-                `}>
+            bg-white shadow-lg rounded-xl p-6 text-center transition-all duration-300
+            ${isActive || isPrev || isNext ? 'opacity-100 scale-105 blur-0' : 'opacity-50 scale-95 '}
+            h-[400px] flex flex-col
+          `}>
                   <div className="flex items-center justify-center mb-4">
                     <Image
                       src={testimonial.image}
@@ -151,15 +148,12 @@ export default function Testimonial() {
                       className="rounded-full"
                     />
                   </div>
-                  <h3 className="text-lg font-semibold text-[#171717]">{testimonial.name}</h3>
+                  <h3 className="text-lg font-semibold text-[#171717] text-center mt-2">{testimonial.name}</h3>
                   <div className="flex justify-center my-2">
                     {Array.from({ length: 5 }, (_, i) => (
                       <span
                         key={i}
-                        className={`mx-0.5 ${i < testimonial.rating
-                            ? "text-[#3FA9F4]"
-                            : "text-gray-300"
-                          }`}
+                        className={`mx-0.5 ${i < testimonial.rating ? "text-[#3FA9F4]" : "text-gray-300"}`}
                       >
                         ★
                       </span>
@@ -169,6 +163,7 @@ export default function Testimonial() {
                 </div>
               )}
             </SwiperSlide>
+
           ))}
         </Swiper>
 
@@ -185,44 +180,62 @@ export default function Testimonial() {
 
       {/* Smooth scrolling for mobile */}
       <div className="md:hidden relative">
-        <div
-          ref={scrollRef}
-          className="flex gap-4 px-4"
-          style={{
-            scrollBehavior: 'smooth',
-            WebkitOverflowScrolling: 'touch',
+        <Swiper
+          modules={[Autoplay, Navigation]}
+          spaceBetween={30}
+          slidesPerView={2}
+          centeredSlides={true}
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
           }}
+          onSlideChange={handleSlideChange}
+          className="px-12"
         >
-          {extendedTestimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
+            <SwiperSlide key={index} className="transition-all duration-300">
+              {({ isActive, isPrev, isNext }) => (
+                <div className={`
+            bg-white shadow-lg rounded-xl p-6 text-center transition-all duration-300
+            ${isActive || isPrev || isNext ? 'opacity-90 scale-105 blur-0' : 'opacity-100 scale-95 '}
+            h-[400px] flex flex-col
+          `}>
+                  <div className="flex items-center justify-center mb-4">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      width={50}
+                      height={50}
+                      className="rounded-full"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-[#171717] text-center mt-2">{testimonial.name}</h3>
+                  <div className="flex justify-center my-2">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span
+                        key={i}
+                        className={`mx-0.5 ${i < testimonial.rating ? "text-[#3FA9F4]" : "text-gray-300"}`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-[#707070] text-sm flex-1">{testimonial.review}</p>
+                </div>
+              )}
+            </SwiperSlide>
+
+          ))}
+        </Swiper>
+
+        <div className="absolute left-1/2  flex gap-2 mt-6">
+          {testimonials.map((_, i) => (
             <div
-              key={index}
-              className="flex-none w-[280px] bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition-shadow duration-300 h-[400px] flex flex-col"
-            >
-              <div className="flex items-center justify-center mb-4">
-                <Image
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-[#171717]">{testimonial.name}</h3>
-              <div className="flex justify-center my-2">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <span
-                    key={i}
-                    className={`mx-0.5 ${i < testimonial.rating
-                        ? "text-[#3FA9F4]"
-                        : "text-gray-300"
-                      }`}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-              <p className="text-[#707070] text-sm flex-1">{testimonial.review}</p>
-            </div>
+              key={i}
+              className={`w-[12px] h-[12px] border-2 rounded-full transition-all ${i === activeIndex ? 'border-[#3FA9F4]' : 'border-[#707070]'
+                }`}
+            />
           ))}
         </div>
       </div>

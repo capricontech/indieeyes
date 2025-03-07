@@ -10,9 +10,6 @@ export class ShapeService extends BaseService {
         super();
     }
 
-    /**
-     * Get singleton instance of ShapeService
-     */
     public static getInstance(): ShapeService {
         if (!ShapeService.instance) {
             ShapeService.instance = new ShapeService();
@@ -26,7 +23,6 @@ export class ShapeService extends BaseService {
      */
     public async getShapes(): Promise<Shape[]> {
         if (this.USE_MOCK_DATA) {
-            // Just return the mock data directly
             return mockShapes;
         }
 
