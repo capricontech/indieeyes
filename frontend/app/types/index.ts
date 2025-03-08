@@ -35,3 +35,27 @@ export interface ApiResponse<T> {
     error?: string;
     message?: string;
 } 
+
+export interface Gender {
+    id: number;
+    name: string;
+    image: string;
+    description?: string;
+  }
+
+  export interface StyleShape {
+    id: number;
+    image: string;
+    name?: string;
+  }
+
+  export interface ProductGrid {
+    id: number;
+    image: string;
+    title: string;
+    originalPrice: number;
+    discountPrice: number;
+    discountPercentage: number;
+    rating: number;
+  }
+  

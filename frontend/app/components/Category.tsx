@@ -19,26 +19,26 @@ const categories = [
 
 export default function Category(){
     return (
-        <div className="bg-white md:py-16 py-24">
+        <div className="bg-white md:py-16 py-20">
             <Swiper
                 modules={[Navigation, Autoplay]}
                 spaceBetween={30}
                 slidesPerView={5}
                 breakpoints={{
                     320: {
-                        slidesPerView: 2,
+                        slidesPerView: 3,
                         spaceBetween: 20
                     },
                     640: {
-                        slidesPerView: 3,
+                        slidesPerView: 4,
                         spaceBetween: 25
                     },
                     768: {
-                        slidesPerView: 4,
+                        slidesPerView: 5,
                         spaceBetween: 30
                     },
                     1024: {
-                        slidesPerView: 5,
+                        slidesPerView: 6,
                         spaceBetween: 30
                     }
                 }}
@@ -48,7 +48,7 @@ export default function Category(){
             >
                 {categories.map((item, index) => (
                     <SwiperSlide key={index} className="flex flex-col items-center">
-                        <div className=" rounded-xl p-4 h-[202px] flex items-center justify-center">
+                        <div className=" rounded-xl p-2 h-[202px] flex items-center justify-center">
                             <img src={item.image} className="w-48 h-40 object-contain" />
                         </div>
                     </SwiperSlide>

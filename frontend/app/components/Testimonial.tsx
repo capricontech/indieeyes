@@ -229,11 +229,11 @@ export default function Testimonial() {
           ))}
         </Swiper>
 
-        <div className="absolute left-1/2  flex gap-2 mt-6">
-          {testimonials.map((_, i) => (
+        <div className=" flex gap-2 mt-6 text-center justify-center">
+          {testimonials.map((_, index) => (
             <div
-              key={i}
-              className={`w-[12px] h-[12px] border-2 rounded-full transition-all ${i === activeIndex ? 'border-[#3FA9F4]' : 'border-[#707070]'
+              key={index}
+              className={`w-[12px] h-[12px] border-2 rounded-full transition-all ${index === activeIndex ? 'border-[#3FA9F4]' : 'border-[#707070]'
                 }`}
             />
           ))}

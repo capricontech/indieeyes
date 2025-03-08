@@ -109,7 +109,7 @@ export default function Footer() {
                                     </li>
                                 ))}
                             </ul>
-                            <div className="grid grid-cols-2 gap-4 mt-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                                 <Image
                                     src="/assets/icons/playstore.png"
                                     alt="Get it on Google Play"

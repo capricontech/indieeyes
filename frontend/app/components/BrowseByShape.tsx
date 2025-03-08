@@ -33,33 +33,33 @@ export default function BrowseByShape() {
       <div className="absolute w-full h-1/2 bottom-0 bg-[#DBDBED]" />
 
       {/* Content Container */}
-      <div className="relative max-w-6xl mx-auto px-4 md:px-8 py-16">
+      <div className="relative max-w-6xl mx-auto px-4 md:px-8 py-12">
         {/* Title */}
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-[#171717] mb-12">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#171717] mb-8 sm:mb-12">
           Browse by Shapes
         </h2>
 
         {/* Shapes Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-6 bg-white md:bg-transparent rounded-lg shadow-md md:shadow-lg">
           {shapes.map((shape, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center"
+              className="bg-white rounded-lg md:shadow-md p-4 sm:p-6 flex flex-col items-center"
             >
               {/* Image */}
-              <div className="w-full flex justify-center mb-4">
+              <div className="w-full flex justify-center mb-3 sm:mb-4">
                 <img
                   src={shape.image}
                   alt={shape.name}
-                  className="w-40 h-20 object-contain"
+                  className="w-28 h-16 sm:w-40 sm:h-20 object-contain"
                 />
               </div>
 
               {/* Text Content */}
-              <h3 className="text-lg md:text-xl font-bold text-[#171717] mb-2">
+              <h3 className="text-base sm:text-lg font-bold text-[#171717] mb-1 sm:mb-2">
                 {shape.name}
               </h3>
-              <p className="text-sm text-[#707070]">
+              <p className="text-xs sm:text-sm text-[#707070]">
                 ({shape.count} Products Found)
               </p>
             </div>
