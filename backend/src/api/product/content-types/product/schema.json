@@ -1,0 +1,107 @@
+{
+    "kind": "collectionType",
+    "collectionName": "products",
+    "info": {
+        "singularName": "product",
+        "pluralName": "products",
+        "displayName": "Product",
+        "description": "Products that can be purchased"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "slug": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "description": {
+            "type": "richtext"
+        },
+        "price": {
+            "type": "decimal",
+            "required": true,
+            "min": 0
+        },
+        "originalPrice": {
+            "type": "decimal",
+            "min": 0
+        },
+        "discountPercentage": {
+            "type": "integer",
+            "min": 0,
+            "max": 100
+        },
+        "stock": {
+            "type": "integer",
+            "min": 0,
+            "default": 0
+        },
+        "category": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::category.category",
+            "inversedBy": "products"
+        },
+        "images": {
+            "type": "media",
+            "multiple": true,
+            "required": true,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "tags": {
+            "type": "json"
+        },
+        "popularityScore": {
+            "type": "integer",
+            "default": 0
+        },
+        "rating": {
+            "type": "decimal",
+            "default": 0,
+            "min": 0,
+            "max": 5
+        },
+        "reviews": {
+            "type": "integer",
+            "default": 0,
+            "min": 0
+        },
+        "colors": {
+            "type": "json"
+        },
+        "sizes": {
+            "type": "json"
+        },
+        "isNew": {
+            "type": "boolean",
+            "default": false
+        },
+        "isFeatured": {
+            "type": "boolean",
+            "default": false
+        },
+        "material": {
+            "type": "string"
+        },
+        "brand": {
+            "type": "string"
+        },
+        "specifications": {
+            "type": "component",
+            "repeatable": true,
+            "component": "product.specification"
+        },
+        "shapeId": {
+            "type": "integer"
+        }
+    }
+}

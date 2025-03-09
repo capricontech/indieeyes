@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_styles_size_styles",
+    "info": {
+        "displayName": "Size Style",
+        "description": "Styling dimensions for categories and products"
+    },
+    "options": {},
+    "attributes": {
+        "width": {
+            "type": "string"
+        },
+        "height": {
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+export default [
+  'strapi::errors',
+  'strapi::security',
+  'strapi::cors',
+  'strapi::poweredBy',
+  'strapi::logger',
+  'strapi::query',
+  'strapi::body',
+  'strapi::session',
+  'strapi::favicon',
+  'strapi::public',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'img-src': ["'self'", 'data:', 'blob:', 'dl.airtable.com', 'res.cloudinary.com'],
+          'media-src': ["'self'", 'data:', 'blob:', 'dl.airtable.com', 'res.cloudinary.com'],
+          upgradeInsecureRequests: null,
+        },
+      },
+      frameguard: {
+        action: 'sameorigin'
+      }
+    },
+  },
+  {
+    name: 'global::errorHandler',
+    config: {}
+  },
+  {
+    name: 'global::rateLimit',
+    config: {
+      duration: 60000,
+      max: 100
+    }
+  }
+];

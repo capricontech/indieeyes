@@ -1,0 +1,32 @@
+{
+    "kind": "collectionType",
+    "collectionName": "style_shapes",
+    "info": {
+        "singularName": "style-shape",
+        "pluralName": "style-shapes",
+        "displayName": "Style Shape",
+        "description": "Style-based eyewear shapes for browsing"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string"
+        },
+        "image": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "products": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::product.product"
+        }
+    }
+}

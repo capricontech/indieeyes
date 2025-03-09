@@ -1,0 +1,43 @@
+{
+    "kind": "collectionType",
+    "collectionName": "carts",
+    "info": {
+        "singularName": "cart",
+        "pluralName": "carts",
+        "displayName": "Cart",
+        "description": "Shopping carts for users and guests"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        },
+        "sessionId": {
+            "type": "string",
+            "unique": true
+        },
+        "items": {
+            "type": "component",
+            "repeatable": true,
+            "component": "cart.cart-item"
+        },
+        "totalAmount": {
+            "type": "decimal",
+            "default": 0,
+            "min": 0
+        },
+        "totalItems": {
+            "type": "integer",
+            "default": 0,
+            "min": 0
+        },
+        "lastUpdated": {
+            "type": "datetime"
+        }
+    }
+}

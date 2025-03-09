@@ -1,0 +1,79 @@
+{
+    "kind": "collectionType",
+    "collectionName": "orders",
+    "info": {
+        "singularName": "order",
+        "pluralName": "orders",
+        "displayName": "Order",
+        "description": "Customer orders"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "orderNumber": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "user": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "plugin::users-permissions.user"
+        },
+        "products": {
+            "type": "component",
+            "repeatable": true,
+            "component": "order.order-item",
+            "required": true,
+            "min": 1
+        },
+        "paymentStatus": {
+            "type": "enumeration",
+            "enum": [
+                "pending",
+                "paid",
+                "failed",
+                "refunded"
+            ],
+            "default": "pending",
+            "required": true
+        },
+        "deliveryStatus": {
+            "type": "enumeration",
+            "enum": [
+                "processing",
+                "shipped",
+                "delivered",
+                "cancelled"
+            ],
+            "default": "processing",
+            "required": true
+        },
+        "totalAmount": {
+            "type": "decimal",
+            "required": true,
+            "min": 0
+        },
+        "shippingAddress": {
+            "type": "component",
+            "repeatable": false,
+            "component": "order.address"
+        },
+        "billingAddress": {
+            "type": "component",
+            "repeatable": false,
+            "component": "order.address"
+        },
+        "paymentMethod": {
+            "type": "string"
+        },
+        "shippingMethod": {
+            "type": "string"
+        },
+        "notes": {
+            "type": "text"
+        }
+    }
+}
