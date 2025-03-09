@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import ProductCard from "../ui/ProductCard";
-import { mockProductGrid } from "../services/mockData";
+import ProductCard from "../../ui/ProductCard";
+import { mockProductGrid } from "../../services/mockData";
 
 const recentProducts = mockProductGrid.map((product) => ({
   imageUrl: product.image,
-  title: product.title,
-  originalPrice: product.originalPrice,
-  discountPrice: product.discountPrice,
-  discountPercentage: product.discountPercentage,
-  rating: product.rating,
+  title: product.name,
+  originalPrice: product.originalPrice ?? product.price,
+  discountPrice: product.price,
+  discountPercentage: product.discountPercentage ?? 0,
+  rating: product.rating
 }));
 
 const infiniteProducts = [...recentProducts, ...recentProducts, ...recentProducts];

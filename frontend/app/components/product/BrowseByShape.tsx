@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Shape } from "../types";
-import shapeService from "../services/api/shapes";
+import { Shape } from "../../types";
+import shapeService from "../../services/api/shapes";
 
 export default function BrowseByShape() {
   const [shapes, setShapes] = useState<Shape[]>([]);

@@ -21,12 +21,21 @@ export interface Category {
 export interface Product {
     id: number;
     name: string;
+    price: number;
+    originalPrice?: number;
     image: string;
-    originalPrice: number;
+    images?: string[];
+    rating: number;
+    reviews: number;
+    categories: string[];
+    colors: string[];
+    sizes: string[];
+    description: string;
+    isNew?: boolean;
+    isFeatured?: boolean;
     discountPercentage?: number;
-    finalPrice: number;
-    rating?: number;
-    isFavorite: boolean;
+    material?: string;
+    brand?: string;
 }
 
 // API response types
@@ -34,28 +43,17 @@ export interface ApiResponse<T> {
     data: T;
     error?: string;
     message?: string;
-} 
+}
 
 export interface Gender {
     id: number;
     name: string;
     image: string;
     description?: string;
-  }
+}
 
-  export interface StyleShape {
+export interface StyleShape {
     id: number;
     image: string;
     name?: string;
-  }
-
-  export interface ProductGrid {
-    id: number;
-    image: string;
-    title: string;
-    originalPrice: number;
-    discountPrice: number;
-    discountPercentage: number;
-    rating: number;
-  }
-  
+}

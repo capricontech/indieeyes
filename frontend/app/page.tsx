@@ -1,12 +1,12 @@
-import Category from './components/Category';
-import Slider from './components/Slider';
-import Categories from './components/Categories';
-import BrowseByShape from './components/BrowseByShape';
-import RecentlyAdded from './components/Recently';
-import Lenses from './components/Lenses';
-import Testimonial from './components/Testimonial';
-import Footer from './components/Footer';
-import BottomBar from './components/BottomBar';
+import Category from './components/home/Category';
+import Slider from './components/home/Slider';
+import Categories from './components/home/Categories';
+import BrowseByShape from './components/product/BrowseByShape';
+import RecentlyAdded from './components/home/Recently';
+import Lenses from './components/product/Lenses';
+import Testimonial from './components/common/Testimonial';
+import Footer from './components/layout/Footer';
+import BottomBar from './components/layout/BottomBar';
 
 export default function Home() {
   return (

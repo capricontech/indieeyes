@@ -2,26 +2,37 @@
 
 import React, { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
+import { FilterValue, Filters } from '../../hooks/useFilters';
 
 const MIN = 0;
 const MAX = 5000;
 
-export default function PriceRangeSlider() {
+interface PriceRangeSliderProps {
+  onFilterChange?: (key: keyof Filters, value: FilterValue) => void;
+}
+
+export default function PriceRangeSlider({ onFilterChange }: PriceRangeSliderProps) {
   const [values, setValues] = useState([500, 2500]);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleRangeChange = (values: number[]) => {
+    setValues(values);
+    if (onFilterChange) {
+      onFilterChange('priceRange', values as [number, number]);
+    }
+  };
 
   return (
     <div className="border rounded-lg p-4 w-full shadow-lg mt-6 md:ml-36">
       {/* Title with Toggle */}
-      <div 
+      <div
         className="flex justify-between items-center mb-4 cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <h3 className="text-lg font-semibold text-gray-900">Price Range</h3>
         <svg
-          className={`w-4 h-4 transition-transform duration-200 md:hidden ${
-            isExpanded ? 'rotate-180' : ''
-          }`}
+          className={`w-4 h-4 transition-transform duration-200 md:hidden ${isExpanded ? 'rotate-180' : ''
+            }`}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -36,9 +47,8 @@ export default function PriceRangeSlider() {
       </div>
 
       {/* Slider Content */}
-      <div className={`${
-        isExpanded ? 'max-h-[200px]' : 'max-h-0 md:max-h-[200px]'
-      } overflow-hidden transition-all duration-300`}>
+      <div className={`${isExpanded ? 'max-h-[200px]' : 'max-h-0 md:max-h-[200px]'
+        } overflow-hidden transition-all duration-300`}>
         {/* Price Display */}
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center">
@@ -69,7 +79,7 @@ export default function PriceRangeSlider() {
             min={MIN}
             max={MAX}
             values={values}
-            onChange={(newValues) => setValues(newValues)}
+            onChange={handleRangeChange}
             renderTrack={({ props, children }) => (
               <div
                 {...props}
@@ -89,12 +99,18 @@ export default function PriceRangeSlider() {
                 {children}
               </div>
             )}
-            renderThumb={({ props }) => (
-              <div
-                {...props}
-                className="w-5 h-5 bg-white border-2 border-indigo-500 rounded-full shadow-md focus:outline-none hover:border-indigo-600 active:scale-95 transition-all"
-              />
-            )}
+            renderThumb={({ props, index }) => {
+              // Extract the key from props
+              const { key, ...restProps } = props;
+
+              return (
+                <div
+                  key={key} // Pass key directly as a prop
+                  {...restProps} // Spread the rest of the props
+                  className="w-5 h-5 bg-white border-2 border-indigo-500 rounded-full shadow-md focus:outline-none hover:border-indigo-600 active:scale-95 transition-all"
+                />
+              );
+            }}
           />
         </div>
 

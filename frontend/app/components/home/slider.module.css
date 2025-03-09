@@ -1,0 +1,55 @@
+/* Container for the slider */
+.sliderContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Swiper styling */
+.swiper {
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Individual slide styling */
+.slide {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+/* Active slide */
+.slide:global(.swiper-slide-active) {
+    opacity: 1;
+}
+
+/* Pagination container */
+.sliderPagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+/* Pagination bullets */
+.paginationBullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #707070;
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Active pagination bullet */
+.paginationBulletActive {
+    background-color: #3FA9F4 !important;
+    border-color: #3FA9F4 !important;
+}
+
+/* Hover effect for pagination bullets */
+.paginationBullet:hover {
+    border-color: #3FA9F4;
+}

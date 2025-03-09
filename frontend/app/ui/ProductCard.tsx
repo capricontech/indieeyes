@@ -32,11 +32,16 @@ export default function ProductCard({
           -{discountPercentage}% Off
         </div>
         <Image
-          src={imageUrl}
+          src={imageUrl || '/placeholder.jpg'}
           alt={title}
-          layout="fill"
-          objectFit="contain"
-          className="rounded-xl p-4 transition-transform duration-300 group-hover:scale-105"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+          className="rounded-xl p-4 transition-transform duration-300 group-hover:scale-105 object-contain"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder.jpg';
+          }}
+          priority={false}
         />
         <div className="absolute top-2 right-2 flex flex-col gap-2">
           <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors">

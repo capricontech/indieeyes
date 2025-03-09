@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import clsx from "clsx"; // Import classnames utility (optional)
+import { FilterValue, Filters } from '../../hooks/useFilters';
 
 interface FilterOption {
   label: string;
@@ -75,31 +76,43 @@ const filters: Array<{ title: string; options: FilterOption[] }> = [
   },
 ];
 
-export default function FilterSidebar() {
+interface FilterSidebarProps {
+  onFilterChange?: (key: keyof Filters, value: FilterValue) => void;
+}
+
+export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
   const [openSections, setOpenSections] = useState<string[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
 
-  const toggleSection = (title: string) => {
-    setOpenSections((prev) =>
-      prev.includes(title)
-        ? prev.filter((item) => item !== title)
-        : [...prev, title]
-    );
-  };
-
-  const toggleFilter = (section: string, option: string) => {
-    setSelectedFilters((prev) => {
-      const sectionFilters = prev[section] || [];
-      const newSectionFilters = sectionFilters.includes(option)
-        ? sectionFilters.filter((item) => item !== option)
-        : [...sectionFilters, option];
-      
-      return {
-        ...prev,
-        [section]: newSectionFilters,
-      };
+  const toggleSection = useCallback((title: string) => {
+    setOpenSections(prev => {
+      if (prev.includes(title)) {
+        return prev.filter(section => section !== title);
+      } else {
+        return [...prev, title];
+      }
     });
-  };
+  }, []);
+
+  const toggleFilter = useCallback((section: string, option: string) => {
+    setSelectedFilters(prev => {
+      const sectionFilters = prev[section] || [];
+
+      if (sectionFilters.includes(option)) {
+        // Remove the filter if it's already selected
+        return {
+          ...prev,
+          [section]: sectionFilters.filter(filter => filter !== option)
+        };
+      } else {
+        // Add the filter if it's not selected
+        return {
+          ...prev,
+          [section]: [...sectionFilters, option]
+        };
+      }
+    });
+  }, []);
 
   const clearFilters = () => {
     setSelectedFilters({});
@@ -107,6 +120,12 @@ export default function FilterSidebar() {
 
   const getSelectedFiltersCount = () => {
     return Object.values(selectedFilters).reduce((acc, curr) => acc + curr.length, 0);
+  };
+
+  const handleFilterChange = (category: string, value: string) => {
+    if (onFilterChange) {
+      onFilterChange(category as keyof Filters, value);
+    }
   };
 
   return (
@@ -134,9 +153,8 @@ export default function FilterSidebar() {
             >
               <span className="font-medium text-gray-900">{title}</span>
               <svg
-                className={`w-4 h-4 transition-transform duration-200 ${
-                  openSections.includes(title) ? 'rotate-180' : ''
-                }`}
+                className={`w-4 h-4 transition-transform duration-200 ${openSections.includes(title) ? 'rotate-180' : ''
+                  }`}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -151,11 +169,10 @@ export default function FilterSidebar() {
             </button>
 
             <div
-              className={`mt-2 space-y-2 transition-all duration-200 ${
-                openSections.includes(title)
-                  ? 'max-h-[300px] opacity-100'
-                  : 'max-h-0 opacity-0 overflow-hidden'
-              }`}
+              className={`mt-2 space-y-2 transition-all duration-200 ${openSections.includes(title)
+                ? 'max-h-[300px] opacity-100'
+                : 'max-h-0 opacity-0 overflow-hidden'
+                }`}
             >
               {options.map((option) => {
                 const isSelected = selectedFilters[title]?.includes(option.label);
@@ -168,7 +185,10 @@ export default function FilterSidebar() {
                       <input
                         type="checkbox"
                         checked={isSelected}
-                        onChange={() => toggleFilter(title, option.label)}
+                        onChange={() => {
+                          toggleFilter(title, option.label);
+                          handleFilterChange(title, option.label);
+                        }}
                         className="w-4 h-4 border-2 rounded text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
                       />
                       {option.color && (

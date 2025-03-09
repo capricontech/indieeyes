@@ -1,6 +1,6 @@
 import { Gender } from '../../types';
 import { BaseService } from './BaseService';
-import { mockGender} from '../mockData';
+import { mockGenders } from '../mockData';
 import { ApiResponse } from '../../types';
 
 export class GenderService extends BaseService {
@@ -21,12 +21,12 @@ export class GenderService extends BaseService {
     }
 
     /**
-        * Get all gender
+     * Get all gender
      */
     public async getGender(): Promise<Gender[]> {
         if (this.USE_MOCK_DATA) {
             // Just return the mock data directly
-            return mockGender;
+            return mockGenders;
         }
 
         // Real API call
@@ -40,7 +40,7 @@ export class GenderService extends BaseService {
     public async getGenderById(id: number): Promise<Gender | undefined> {
         if (this.USE_MOCK_DATA) {
             // Just return the found category directly
-            return mockGender.find(c => c.id === id);
+            return mockGenders.find(c => c.id === id);
         }
 
         // Real API call

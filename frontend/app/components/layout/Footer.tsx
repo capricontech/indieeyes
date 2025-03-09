@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram } from 'react-icons/fa';
@@ -49,15 +51,15 @@ export default function Footer() {
                             />
                         </Link>
                         <p className="text-[#707070] text-sm leading-relaxed break-words">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                            when an unknown printer took a galley of type and scrambled it to make a type 
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type
                             specimen book. It has survived not only five centuries,
                         </p>
                         <div className="flex gap-4 flex-wrap">
                             {socialLinks.map((social) => (
-                                <Link 
-                                    key={social.name} 
+                                <Link
+                                    key={social.name}
                                     href={social.href}
                                     className="text-white bg-[#6053FB]  transition-colors w-8 h-8 flex items-center justify-center rounded-full bg-6053FB hover:bg-white hover:text-[#6053FB]"
                                 >
@@ -66,7 +68,7 @@ export default function Footer() {
                             ))}
                         </div>
                     </div>
-                    
+
                     {/* Links Section */}
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:col-span-3">
                         {/* About Us */}

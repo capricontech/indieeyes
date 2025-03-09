@@ -1,31 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Filter } from 'lucide-react';
 import CategoryHeader from '../components/category/CategoryHeader';
 import FilterSidebar from '../components/category/FilterSidebar';
 import ProductGrid from '../components/category/ProductGrid';
 import StyleShapes from '../components/category/StyleShapes';
 import PriceRangeSlider from '../components/category/PriceRangeSlider';
-import Testimonial from '../components/Testimonial';
-import Footer from '../components/Footer';
-import BottomBar from '../components/BottomBar';
+import Testimonial from '../components/common/Testimonial';
+import Footer from '../components/layout/Footer';
+import BottomBar from '../components/layout/BottomBar';
 import Gender from '../components/category/Gender';
-import Lenses from '../components/Lenses';
+import Lenses from '../components/product/Lenses';
 import type { SortOption } from '../components/category/CategoryHeader';
 import { mockProductGrid } from '../services/mockData';
+import { useFilters } from '../hooks/useFilters';
 
 export default function CategoryPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState<SortOption['value']>('newest');
+  const { filters, updateFilter } = useFilters();
+
+  const toggleFilterOpen = useCallback(() => {
+    setIsFilterOpen(prev => !prev);
+  }, []);
 
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <Gender />
-      <CategoryHeader 
-        view={view} 
-        onViewChange={setView} 
+      <CategoryHeader
+        view={view}
+        onViewChange={setView}
         selectedSort={sortBy}
         onSortChange={setSortBy}
         totalProducts={mockProductGrid.length}
@@ -34,7 +40,7 @@ export default function CategoryPage() {
       {/* Mobile Filter Button */}
       <div className="md:hidden flex justify-end px-4 mt-4">
         <button
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          onClick={toggleFilterOpen}
           className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg"
         >
           <Filter size={20} />
@@ -52,34 +58,38 @@ export default function CategoryPage() {
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Filters</h2>
               <button
-                onClick={() => setIsFilterOpen(false)}
+                onClick={toggleFilterOpen}
                 className="text-gray-500"
               >
                 ✕
               </button>
             </div>
-            <StyleShapes />
-            <PriceRangeSlider />
-            <FilterSidebar />
+            <StyleShapes onFilterChange={updateFilter} />
+            <PriceRangeSlider onFilterChange={updateFilter} />
+            <FilterSidebar onFilterChange={updateFilter} />
           </div>
         </div>
 
         {/* Desktop Filter Sidebar */}
         <div className="hidden md:block w-[350px]">
-          <StyleShapes />
-          <PriceRangeSlider />
-          <FilterSidebar />
+          <StyleShapes onFilterChange={updateFilter} />
+          <PriceRangeSlider onFilterChange={updateFilter} />
+          <FilterSidebar onFilterChange={updateFilter} />
         </div>
 
         {/* Overlay for mobile filter */}
         {isFilterOpen && (
           <div
             className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => setIsFilterOpen(false)}
+            onClick={toggleFilterOpen}
           />
         )}
 
-        <ProductGrid view={view} sortBy={sortBy} />
+        <ProductGrid
+          view={view}
+          sortBy={sortBy}
+          filters={filters}
+        />
       </div>
       <Lenses />
       <Testimonial />
