@@ -122,6 +122,68 @@ When contributing to this project, please ensure:
 4. Styles follow the Tailwind CSS approach or use CSS Modules
 5. Any Swiper components follow the guidelines in [Swiper Styling Guide](./swiper-styling.md)
 
+## Development Guidelines
+
+### Documentation Requirements
+
+1. **Bug Fix Documentation**: When fixing any bug or issue in the codebase:
+   - Always document the change in the [BUGFIX-CHANGELOG.md](./BUGFIX-CHANGELOG.md) file
+   - Include a clear description of the issue, files modified, changes made, and benefits
+   - Place the most recent fixes at the top of the changelog
+   - Use consistent formatting with previous entries
+
+2. **README Updates**: After making any change to a module:
+   - Update the corresponding README file in the `docs` directory
+   - Ensure documentation accurately reflects current functionality
+   - Document any API changes, new components, or significant modifications
+   - If creating new components or features, add appropriate documentation
+
+### Development Workflow
+
+1. **Feature Branch Methodology**:
+   - Always create a new branch for each feature or bug fix
+   - Use descriptive branch names following the pattern: `feature/feature-name` or `bugfix/issue-description`
+   - Keep branches focused on a single feature or fix
+   - Create a pull request for code review before merging to main
+   - Delete branches after they have been merged
+
+2. **Code Quality Standards**:
+   - Write clean, maintainable code with proper error handling
+   - Follow TypeScript best practices with proper typing
+   - Add unit tests for new features when applicable
+   - Ensure responsive design works across all target devices
+
+### Swiper Component Implementation
+
+When working with Swiper components, follow these guidelines to avoid common issues:
+
+1. **Component Structure**:
+   - Always include `"use client"` directive at the top of any file using Swiper
+   - Keep a reference to the Swiper instance using `useRef`
+   - Import only the modules you need from Swiper
+
+2. **Avoiding Common Issues**:
+   - Use CSS modules instead of inline styles for Swiper components
+   - Never use conditional Tailwind classes for active/inactive slide styling
+   - For opacity or visual differences between slides, use direct DOM manipulation
+   - When using loop mode, always use `slideToLoop` instead of `slideTo`
+   - Ensure you have enough slides (at least 3) when using loop mode
+
+3. **Layout and Styling**:
+   - Avoid margin offsets (like `md:ml-36`) that can break layouts
+   - Test carousel behavior on different screen sizes
+   - Refer to the [Swiper Styling Guide](./swiper-styling.md) for detailed guidance
+
+### AI Assistant Instructions
+
+The Cursor AI assistant should:
+1. Read this Cursor-Readme.md file first to understand the project structure and organization
+2. Familiarize itself with the component architecture and development patterns
+3. Refer to specific documentation in the `/docs` directory when working on particular features
+4. Follow the documentation and development guidelines outlined above
+5. Suggest improvements that align with the project's established patterns and practices
+6. Help maintain and improve documentation as the project evolves
+
 ## Deployment
 
 The application is designed to be deployed on Vercel, but can be deployed to any platform that supports Next.js applications.
