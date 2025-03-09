@@ -4,7 +4,35 @@ This document tracks all bug fixes and improvements made to the IndieEyes applic
 
 ## March 2024
 
-### Fixed Testimonial Component Issues (Latest)
+### Fixed Categories Page Layout Issues (Latest)
+
+- **Root Issue**: Layout problems on the Categories page causing components to display incorrectly
+  - Filter components (StyleShapes, PriceRangeSlider, FilterSidebar) had incorrect margin offsets (`md:ml-36`)
+  - Product grid was not properly contained within the layout
+  - Components were overlapping and causing visual display issues
+  - Duplicate Footer and BottomBar components appearing on the page
+  
+- **Files Modified**:
+  - `app/components/category/StyleShapes.tsx`
+  - `app/components/category/PriceRangeSlider.tsx`
+  - `app/components/category/FilterSidebar.tsx`
+  - `app/category/page.tsx`
+  
+- **Changes Made**:
+  - Removed the `md:ml-36` margin from all filter components 
+  - Added proper responsive width classes to the sidebar (`md:w-1/4 lg:w-1/5`) and product grid (`md:w-3/4 lg:w-4/5`)
+  - Added gap spacing between the sidebar and product grid (`gap-6`)
+  - Fixed the flex layout structure for better responsiveness
+  - Removed duplicate Footer and BottomBar components from the page component (already included in layout)
+  
+- **Benefits**:
+  - Restored proper sidebar and product grid layout
+  - Fixed alignment issues in the filter components
+  - Ensured proper responsive behavior on all screen sizes
+  - Eliminated component overlapping issues
+  - Fixed duplicate footer issue for cleaner UI presentation
+
+### Fixed Testimonial Component Issues
 
 - **Root Issue**: Opacity and navigation problems with the Testimonial component
   - Slides had inconsistent opacity causing poor visibility of content

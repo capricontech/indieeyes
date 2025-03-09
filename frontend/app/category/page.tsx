@@ -8,8 +8,6 @@ import ProductGrid from '../components/category/ProductGrid';
 import StyleShapes from '../components/category/StyleShapes';
 import PriceRangeSlider from '../components/category/PriceRangeSlider';
 import Testimonial from '../components/common/Testimonial';
-import Footer from '../components/layout/Footer';
-import BottomBar from '../components/layout/BottomBar';
 import Gender from '../components/category/Gender';
 import Lenses from '../components/product/Lenses';
 import type { SortOption } from '../components/category/CategoryHeader';
@@ -48,7 +46,7 @@ export default function CategoryPage() {
         </button>
       </div>
 
-      <div className="flex flex-col md:flex-row relative">
+      <div className="flex flex-col md:flex-row gap-6 relative">
         {/* Mobile Filter Drawer */}
         <div
           className={`${isFilterOpen ? 'translate-x-0' : '-translate-x-full'
@@ -71,7 +69,7 @@ export default function CategoryPage() {
         </div>
 
         {/* Desktop Filter Sidebar */}
-        <div className="hidden md:block w-[350px]">
+        <div className="hidden md:block md:w-1/4 lg:w-1/5">
           <StyleShapes onFilterChange={updateFilter} />
           <PriceRangeSlider onFilterChange={updateFilter} />
           <FilterSidebar onFilterChange={updateFilter} />
@@ -85,16 +83,18 @@ export default function CategoryPage() {
           />
         )}
 
-        <ProductGrid
-          view={view}
-          sortBy={sortBy}
-          filters={filters}
-        />
+        {/* Product Grid */}
+        <div className="md:w-3/4 lg:w-4/5">
+          <ProductGrid
+            view={view}
+            sortBy={sortBy}
+            filters={filters}
+          />
+        </div>
       </div>
+
       <Lenses />
       <Testimonial />
-      <Footer />
-      <BottomBar />
     </div>
   );
 }

@@ -129,7 +129,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
   };
 
   return (
-    <div className="border rounded-lg p-4 w-full shadow-lg mt-6 md:ml-36">
+    <div className="border rounded-lg p-4 w-full shadow-lg mt-6">
       {/* Header with Clear Filters */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold text-gray-900">Filters</h2>

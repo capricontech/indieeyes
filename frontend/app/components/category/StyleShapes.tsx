@@ -37,7 +37,7 @@ export default function StyleShapes({ onFilterChange }: StyleShapesProps) {
   }, [selectedShape, onFilterChange]);
 
   return (
-    <div className="border rounded-lg p-4 w-full shadow-lg mt-6 md:ml-36">
+    <div className="border rounded-lg p-4 w-full shadow-lg mt-6">
       {/* Title with Toggle */}
       <div
         className="flex justify-between items-center mb-3 cursor-pointer"
