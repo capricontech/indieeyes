@@ -43,4 +43,38 @@ export class BaseService {
             throw error;
         }
     }
+
+    /**
+     * GET request
+     */
+    protected async get<T>(endpoint: string): Promise<T> {
+        return this.fetchAPI<T>(endpoint, { method: 'GET' });
+    }
+
+    /**
+     * POST request
+     */
+    protected async post<T>(endpoint: string, data: any): Promise<T> {
+        return this.fetchAPI<T>(endpoint, {
+            method: 'POST',
+            body: JSON.stringify(data),
+        });
+    }
+
+    /**
+     * PUT request
+     */
+    protected async put<T>(endpoint: string, data: any): Promise<T> {
+        return this.fetchAPI<T>(endpoint, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+        });
+    }
+
+    /**
+     * DELETE request
+     */
+    protected async delete<T>(endpoint: string): Promise<T> {
+        return this.fetchAPI<T>(endpoint, { method: 'DELETE' });
+    }
 } 

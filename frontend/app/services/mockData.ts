@@ -1,4 +1,4 @@
-import { Shape, Category, Product, Gender, StyleShape, ProductGrid } from '../types';
+import { Shape, Category, Product, Gender, StyleShape, ProductGrid, ProductType, CustomerReview } from '../types';
 
 // Mock shapes data
 export const mockShapes: Shape[] = [
@@ -356,3 +356,146 @@ export const mockProductGrid: ProductGrid[] = [
     rating: 4.4
   }
 ];
+
+export const mockProductDetails: ProductType[] = [
+  {
+    id: 1,
+    image: '/assets/images/productPage/image (1).png',
+  },
+  {
+    id: 2,
+    image: '/assets/images/productPage/image (2).png',
+  },
+  {
+    id: 4,
+    image: '/assets/images/productPage/image (4).png',
+  },
+  {
+    id: 5,
+    image: '/assets/images/productPage/image (5).png',
+  },
+  {
+    id: 6,
+    image: '/assets/images/productPage/image (6).png',
+  },
+  {
+    id: 7,
+    image: '/assets/images/productPage/image (7).png',
+  },
+  {
+    id: 8,
+    image: '/assets/images/productPage/image (8).png',
+  },
+  {
+    id: 9,
+    image: '/assets/images/productPage/Group 4665.png',
+  }
+]
+
+export const mockCustomerReviews: CustomerReview[] = [
+  {
+    id: 1,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (1).png',
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    date: '2024-01-02',
+    rating: 4,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (2).png',
+  },
+  {
+    id: 3,  
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (3).png',
+  },
+  {
+    id: 4,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (4).png',
+  },
+  {
+    id: 5,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (5).png',
+  },
+  {
+    id: 6,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (6).png',
+  },
+  {
+    id: 7,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (7).png',
+  },
+  {
+    id: 8,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (8).png',
+  },
+  {
+    id: 9,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (9).png',
+  },
+  {
+    id: 10,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 5,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (10).png',
+  },
+  {
+    id: 11,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 3,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (11).png',
+  },
+  {
+    id: 12,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 2,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (12).png',
+  },
+  {
+    id: 13,
+    name: 'John Doe',
+    date: '2024-01-01',
+    rating: 1,
+    review: 'This is a review',
+    productImage: '/assets/images/productPage/rating/image (13).png',
+  },
+  
+]

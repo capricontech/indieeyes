@@ -9,8 +9,8 @@ export interface Shape {
 // Category types
 export interface Category {
     id: number;
-    name: string;
     image: string;
+    name: string;
     style?: {
         width: string;
         height: string;
@@ -57,5 +57,19 @@ export interface Gender {
     discountPrice: number;
     discountPercentage: number;
     rating: number;
+  }
+  
+  export interface ProductType {
+    id: number;
+    image: string;
+  }
+
+  export interface CustomerReview {
+    id: number;
+    name: string;
+    date: string;
+    rating: number;
+    review: string;
+    productImage: string;
   }
   
