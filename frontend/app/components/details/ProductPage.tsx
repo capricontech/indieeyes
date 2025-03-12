@@ -13,7 +13,7 @@ export default function ProductPage({ productId }: ProductPageProps) {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Product Info Section */}
-      <div className="container mx-auto py-8 px-4">
+      <div className="container mx-auto py-8 px-4 max-w-screen-lg">
         <div className="flex flex-col md:flex-row gap-8">
           <ProductImage />
           <ProductDetails />
@@ -21,7 +21,7 @@ export default function ProductPage({ productId }: ProductPageProps) {
       </div>
       
       {/* Ratings & Reviews Section */}
-      <div className="container mx-auto py-8 px-4">
+      <div className="container mx-auto py-8 px-4 max-w-screen-lg">
         <h2 className="text-2xl font-bold mb-6">Ratings & Reviews</h2>
         <div className="bg-white rounded-lg shadow-sm p-4">
           <div className="flex flex-col lg:flex-row gap-8">

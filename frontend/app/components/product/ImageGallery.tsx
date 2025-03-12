@@ -39,7 +39,7 @@ export const ImageGallery = ({
       {/* Product Image and Thumbnails */}
       <div className="flex flex-col items-start w-full">
         {/* Main Image */}
-        <div className="w-full  border-gray-200 rounded-lg p-8 bg-white mb-4">
+        <div className="w-full border-gray-200 rounded-lg p-4 bg-white mb-4">
           <img 
             src={selectedImage} 
             alt="Product" 
@@ -48,7 +48,7 @@ export const ImageGallery = ({
         </div>
 
         {/* Thumbnail Gallery */}
-        <div className="grid grid-cols-3 gap-2 w-full">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
           {images.map((img, index) => (
             <button 
               key={index} 

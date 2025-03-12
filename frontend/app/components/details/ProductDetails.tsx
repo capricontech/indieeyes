@@ -57,19 +57,18 @@ export default function ProductDetails() {
   const [pincode, setPincode] = useState("");
 
   return (
-    <div className="w-2/5 p-4 mt-24 mr-20">
-      {/* Product Title and Actions */}
-      <div className="flex justify-between items-start">
+    <div className="w-full md:w-2/5 p-4 mt-8 md:mt-24 mr-4 md:mr-32">
+      <div className="flex flex-col md:flex-row justify-between items-start">
         <div>
-          <h1 className="text-2xl font-bold">Black Full Rim Wayfarer</h1>
-          <p className="text-gray-600 mt-1">Unisex aviator sunglasses with UV protection lenses</p>
+          <h1 className="text-xl md:text-2xl font-bold">Black Full Rim Wayfarer</h1>
+          <p className="text-gray-600 mt-1 text-sm md:text-base">Unisex aviator sunglasses with UV protection lenses</p>
           <div className="mt-2 flex items-center space-x-2">
-            <span className="bg-blue-100 text-blue-600 text-sm px-2 py-1 rounded-lg">⭐ 4.2 | 11 Ratings</span>
+            <span className="bg-blue-100 text-blue-600 text-xs md:text-sm px-2 py-1 rounded-lg">⭐ 4.2 | 11 Ratings</span>
           </div>
         </div>
-        <div className="flex space-x-3">
-          <Heart className="w-6 h-6 cursor-pointer text-gray-600 hover:text-red-500" />
-          <Share2 className="w-6 h-6 cursor-pointer text-gray-600 hover:text-blue-500" />
+        <div className="flex space-x-3 mt-4 md:mt-0">
+          <Heart className="w-5 h-5 md:w-6 md:h-6 cursor-pointer text-gray-600 hover:text-red-500" />
+          <Share2 className="w-5 h-5 md:w-6 md:h-6 cursor-pointer text-gray-600 hover:text-blue-500" />
         </div>
       </div>
 
@@ -91,27 +90,27 @@ export default function ProductDetails() {
       />
 
       {/* Action Buttons */}
-      <div className="mt-6 flex space-x-4">
-        <button className="bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-8 rounded-lg font-medium flex-1">
+      <div className="mt-6 flex flex-col md:flex-row space-x-0 md:space-x-4">
+        <button className="bg-indigo-600 hover:bg-indigo-700 text-white py-2 md:py-3 px-6 md:px-8 rounded-lg font-medium flex-1">
           BUY NOW
         </button>
-        <button className="bg-gray-900 hover:bg-black text-white py-3 px-8 rounded-lg font-medium flex-1">
+        <button className="bg-gray-900 hover:bg-black text-white py-2 md:py-3 px-6 md:px-8 rounded-lg font-medium flex-1 mt-2 md:mt-0">
           ADD TO CART
         </button>
       </div>
 
       {/* Delivery Check */}
       <div className="mt-6">
-        <h3 className="font-semibold">Check Delivery Date</h3>
+        <h3 className="font-semibold text-sm md:text-base">Check Delivery Date</h3>
         <div className="flex mt-2">
           <input
             type="text"
             placeholder="Enter Pincode"
-            className="border border-gray-300 rounded-lg px-4 py-2 flex-1"
+            className="border border-gray-300 rounded-lg px-4 py-2 flex-1 text-sm md:text-base"
             value={pincode}
             onChange={(e) => setPincode(e.target.value)}
           />
-          <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg ml-2">
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 md:px-6 py-2 rounded-lg ml-2 text-sm md:text-base">
             CHECK
           </button>
         </div>

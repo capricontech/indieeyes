@@ -35,6 +35,6 @@ export default function ProductImage() {
     return <div className="w-3/5 p-4 mt-24 ml-20 mr-4 text-red-500">{error}</div>;
   }
 
-  return <ImageGallery images={images} wrapperClassName="w-3/5 p-4 mt-20 ml-28 mr-4" />;
+  return <ImageGallery images={images} wrapperClassName="w-full p-4 md:mt-20 mt-28 ml-4 md:ml-28 mr-4 " />;
 }
 
