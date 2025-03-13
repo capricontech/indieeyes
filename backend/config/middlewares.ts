@@ -1,14 +1,5 @@
 export default [
   'strapi::errors',
-  'strapi::security',
-  'strapi::cors',
-  'strapi::poweredBy',
-  'strapi::logger',
-  'strapi::query',
-  'strapi::body',
-  'strapi::session',
-  'strapi::favicon',
-  'strapi::public',
   {
     name: 'strapi::security',
     config: {
@@ -26,15 +17,12 @@ export default [
       }
     },
   },
-  {
-    name: 'global::errorHandler',
-    config: {}
-  },
-  {
-    name: 'global::rateLimit',
-    config: {
-      duration: 60000,
-      max: 100
-    }
-  }
+  'strapi::cors',
+  'strapi::poweredBy',
+  'strapi::logger',
+  'strapi::query',
+  'strapi::body',
+  'strapi::session',
+  'strapi::favicon',
+  'strapi::public',
 ];

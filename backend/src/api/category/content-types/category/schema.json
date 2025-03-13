@@ -44,6 +44,17 @@
             "relation": "oneToMany",
             "target": "api::product.product",
             "mappedBy": "category"
+        },
+        "target_audience": {
+            "type": "enumeration",
+            "enum": [
+                "men",
+                "women",
+                "unisex",
+                "kids"
+            ],
+            "required": true,
+            "multiple": true
         }
     }
 }

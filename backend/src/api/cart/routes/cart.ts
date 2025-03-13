@@ -7,13 +7,56 @@ const defaultRouter = factories.createCoreRouter('api::cart.cart' as any);
 
 export default {
     routes: [
-        // Add the routes from the default router
-        ...(defaultRouter.routes as any[]),
-        // Get or create cart
+        // Get all carts (default route)
         {
             method: 'GET',
-            path: '/cart/session',
-            handler: 'cart.getOrCreate',
+            path: '/carts',
+            handler: 'cart.find',
+            config: {
+                policies: []
+            }
+        },
+        // Get a specific cart (default route)
+        {
+            method: 'GET',
+            path: '/carts/:id',
+            handler: 'cart.findOne',
+            config: {
+                policies: []
+            }
+        },
+        // Create a cart (default route)
+        {
+            method: 'POST',
+            path: '/carts',
+            handler: 'cart.create',
+            config: {
+                policies: []
+            }
+        },
+        // Update a cart (default route)
+        {
+            method: 'PUT',
+            path: '/carts/:id',
+            handler: 'cart.update',
+            config: {
+                policies: []
+            }
+        },
+        // Delete a cart (default route)
+        {
+            method: 'DELETE',
+            path: '/carts/:id',
+            handler: 'cart.delete',
+            config: {
+                policies: []
+            }
+        },
+        // Get user's cart
+        {
+            method: 'GET',
+            path: '/cart',
+            handler: 'cart.getCart',
             config: {
                 policies: []
             }
@@ -21,8 +64,17 @@ export default {
         // Add item to cart
         {
             method: 'POST',
-            path: '/cart/:id/items',
+            path: '/cart/items',
             handler: 'cart.addItem',
+            config: {
+                policies: []
+            }
+        },
+        // Update item in cart
+        {
+            method: 'PUT',
+            path: '/cart/items/:id',
+            handler: 'cart.updateItem',
             config: {
                 policies: []
             }
@@ -30,17 +82,17 @@ export default {
         // Remove item from cart
         {
             method: 'DELETE',
-            path: '/cart/:id/items',
+            path: '/cart/items/:id',
             handler: 'cart.removeItem',
             config: {
                 policies: []
             }
         },
-        // Update item quantity
+        // Clear cart
         {
-            method: 'PUT',
-            path: '/cart/:id/items',
-            handler: 'cart.updateItemQuantity',
+            method: 'DELETE',
+            path: '/cart/clear',
+            handler: 'cart.clearCart',
             config: {
                 policies: []
             }

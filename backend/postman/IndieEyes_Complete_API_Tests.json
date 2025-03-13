@@ -1,0 +1,824 @@
+{
+    "info": {
+        "_postman_id": "e5f3b8a1-5c5d-4f3a-8b5a-5c5d4f3a8b5a",
+        "name": "IndieEyes Complete API Tests",
+        "description": "Collection for testing the complete IndieEyes API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Categories",
+            "item": [
+                {
+                    "name": "Get All Categories",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/categories?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "categories"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get all categories with their target_audience field"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Filter Categories by Target Audience",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/categories?filters[target_audience][$contains]=women",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "categories"
+                            ],
+                            "query": [
+                                {
+                                    "key": "filters[target_audience][$contains]",
+                                    "value": "women"
+                                }
+                            ]
+                        },
+                        "description": "Filter categories by target audience (women)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Category with Target Audience",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"name\": \"Test Category\",\n        \"slug\": \"test-category\",\n        \"target_audience\": [\"women\", \"unisex\"]\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "categories"
+                            ]
+                        },
+                        "description": "Create a new category with target audience"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Category by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/categories/1?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "categories",
+                                "1"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get a category by ID with all related data"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the categories endpoints"
+        },
+        {
+            "name": "Products",
+            "item": [
+                {
+                    "name": "Get Products",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get all products with their related categories"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Products by Category",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products?populate=*&filters[category][target_audience][$contains]=women",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "filters[category][target_audience][$contains]",
+                                    "value": "women"
+                                }
+                            ]
+                        },
+                        "description": "Get products filtered by category target audience"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Product by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products/1?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products",
+                                "1"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get a product by ID with all related data"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Recent Products",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products/recent?limit=5",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products",
+                                "recent"
+                            ],
+                            "query": [
+                                {
+                                    "key": "limit",
+                                    "value": "5"
+                                }
+                            ]
+                        },
+                        "description": "Get recent products with optional limit"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Product",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"name\": \"Test Product\",\n        \"slug\": \"test-product\",\n        \"price\": 100,\n        \"originalPrice\": 150,\n        \"discountPercentage\": 33,\n        \"category\": 1,\n        \"shapeId\": 1,\n        \"description\": \"Test product description\"\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products"
+                            ]
+                        },
+                        "description": "Create a new product"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the products endpoints"
+        },
+        {
+            "name": "Shapes",
+            "item": [
+                {
+                    "name": "Get All Shapes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/shapes?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "shapes"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get all shapes with their product counts"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Shape by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/shapes/1?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "shapes",
+                                "1"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get a shape by ID with all related data"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Shape",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"name\": \"Test Shape\",\n        \"count\": 0\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/shapes",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "shapes"
+                            ]
+                        },
+                        "description": "Create a new shape"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the shapes endpoints"
+        },
+        {
+            "name": "Style Shapes",
+            "item": [
+                {
+                    "name": "Get All Style Shapes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/style-shapes?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "style-shapes"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get all style shapes with their product counts"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Style Shape by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/style-shapes/1?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "style-shapes",
+                                "1"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get a style shape by ID with all related data"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Products by Style Shape",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/style-shapes/1/products?page=1&limit=10",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "style-shapes",
+                                "1",
+                                "products"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
+                            ]
+                        },
+                        "description": "Get products by style shape with pagination"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Style Shape",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"name\": \"Test Style Shape\"\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/style-shapes",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "style-shapes"
+                            ]
+                        },
+                        "description": "Create a new style shape"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the style shapes endpoints"
+        },
+        {
+            "name": "Orders",
+            "item": [
+                {
+                    "name": "Get All Orders",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/orders?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "orders"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get all orders (requires authentication)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Order by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/orders/1?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "orders",
+                                "1"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get an order by ID (requires authentication)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Order",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"products\": [\n            {\n                \"product\": 1,\n                \"quantity\": 2,\n                \"price\": 100\n            }\n        ],\n        \"shippingAddress\": {\n            \"fullName\": \"John Doe\",\n            \"addressLine1\": \"123 Main St\",\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"postalCode\": \"10001\",\n            \"country\": \"USA\",\n            \"phone\": \"123-456-7890\"\n        },\n        \"billingAddress\": {\n            \"fullName\": \"John Doe\",\n            \"addressLine1\": \"123 Main St\",\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"postalCode\": \"10001\",\n            \"country\": \"USA\",\n            \"phone\": \"123-456-7890\"\n        }\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/orders",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "orders"
+                            ]
+                        },
+                        "description": "Create a new order"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Order Status",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"paymentStatus\": \"paid\",\n    \"deliveryStatus\": \"shipped\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/orders/1/status",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "orders",
+                                "1",
+                                "status"
+                            ]
+                        },
+                        "description": "Update order status"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the orders endpoints"
+        },
+        {
+            "name": "Cart",
+            "item": [
+                {
+                    "name": "Get Cart",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/session",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "cart",
+                                "session"
+                            ]
+                        },
+                        "description": "Get or create a cart for the user"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Add Item to Cart",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"productId\": 1,\n    \"quantity\": 1,\n    \"options\": {}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/1/items",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "cart",
+                                "1",
+                                "items"
+                            ]
+                        },
+                        "description": "Add an item to the cart"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove Item from Cart",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"itemIndex\": 0\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/1/items",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "cart",
+                                "1",
+                                "items"
+                            ]
+                        },
+                        "description": "Remove an item from the cart"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Item Quantity",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"itemIndex\": 0,\n    \"quantity\": 2\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/1/items",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "cart",
+                                "1",
+                                "items"
+                            ]
+                        },
+                        "description": "Update item quantity in the cart"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the cart endpoints"
+        },
+        {
+            "name": "Authentication",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"test@example.com\",\n    \"password\": \"Password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/auth/local/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "local",
+                                "register"
+                            ]
+                        },
+                        "description": "Register a new user"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "var jsonData = JSON.parse(responseBody);",
+                                    "if (jsonData.jwt) {",
+                                    "    pm.environment.set(\"token\", jsonData.jwt);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"identifier\": \"test@example.com\",\n    \"password\": \"Password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/auth/local",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "auth",
+                                "local"
+                            ]
+                        },
+                        "description": "Login with email and password"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/users/me",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "users",
+                                "me"
+                            ]
+                        },
+                        "description": "Get the current user's profile"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the authentication endpoints"
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:1337/api",
+            "type": "string"
+        },
+        {
+            "key": "token",
+            "value": "",
+            "type": "string"
+        }
+    ]
+}

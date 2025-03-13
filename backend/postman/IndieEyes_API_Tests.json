@@ -1,0 +1,176 @@
+{
+    "info": {
+        "_postman_id": "e5f3b8a1-5c5d-4f3a-8b5a-5c5d4f3a8b5a",
+        "name": "IndieEyes API Tests",
+        "description": "Collection for testing the IndieEyes API with the new target_audience field",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Categories",
+            "item": [
+                {
+                    "name": "Get All Categories",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/categories?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "categories"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get all categories with their target_audience field"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Filter Categories by Target Audience",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/categories?filters[target_audience][$contains]=women",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "categories"
+                            ],
+                            "query": [
+                                {
+                                    "key": "filters[target_audience][$contains]",
+                                    "value": "women"
+                                }
+                            ]
+                        },
+                        "description": "Filter categories by target audience (women)"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Category with Target Audience",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"data\": {\n        \"name\": \"Test Category\",\n        \"slug\": \"test-category\",\n        \"target_audience\": [\"women\", \"unisex\"]\n    }\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/categories",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "categories"
+                            ]
+                        },
+                        "description": "Create a new category with target audience"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the categories endpoints"
+        },
+        {
+            "name": "Products",
+            "item": [
+                {
+                    "name": "Get Products",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products?populate=*",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "description": "Get all products with their related categories"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Products by Category",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/products?populate=*&filters[category][target_audience][$contains]=women",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "products"
+                            ],
+                            "query": [
+                                {
+                                    "key": "populate",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "filters[category][target_audience][$contains]",
+                                    "value": "women"
+                                }
+                            ]
+                        },
+                        "description": "Get products filtered by category target audience"
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Tests for the products endpoints"
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:1337/api",
+            "type": "string"
+        }
+    ]
+}
